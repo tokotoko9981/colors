@@ -1,14 +1,14 @@
-// QuesitonPages.js (問題ページの実装)
+// question.js (問題ページ)
+"use client";
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
 import questions from "../data/questions.json";
 import Question from "../components/Question";
 import NumberPad from "../components/NumberPad";
+import { useRouter } from "next/navigation";
 
 const QuestionPage = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const questionIndex = parseInt(id, 10) - 1;
+  const router = useRouter();
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [input, setInput] = useState("");
 
   const handleInput = (num) => {
@@ -20,12 +20,12 @@ const QuestionPage = () => {
   };
 
   const handleSubmit = () => {
-    if (input === questions[questionIndex].answer) {
-      const nextQuestion = questionIndex + 2;
-      if (nextQuestion > questions.length) {
-        navigate("/clear");
+    if (input === questions[currentQuestion].answer) {
+      if (currentQuestion + 1 < questions.length) {
+        setCurrentQuestion((prev) => prev + 1);
+        setInput("");
       } else {
-        navigate(`/question/${nextQuestion}`);
+        router.push("/clear");
       }
     } else {
       alert("不正解です！");
@@ -33,12 +33,15 @@ const QuestionPage = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-4">
-      <Question image={questions[questionIndex].image} />
+    <div className="flex flex-col items-center justify-center h-screen text-center p-4">
+      <Question image={questions[currentQuestion].image} />
       <div className="text-2xl my-4">{input}</div>
       <NumberPad onInput={handleInput} onSubmit={handleSubmit} onClear={handleClear} />
-      {questionIndex > 0 && (
-        <button className="mt-4 p-2 bg-gray-500 text-white rounded-lg" onClick={() => navigate(`/question/${questionIndex}`)}>
+      {currentQuestion > 0 && (
+        <button
+          className="mt-4 p-2 bg-gray-500 text-white rounded-lg"
+          onClick={() => setCurrentQuestion((prev) => prev - 1)}
+        >
           戻る
         </button>
       )}

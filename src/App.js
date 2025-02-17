@@ -1,8 +1,8 @@
 // App.js
-import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
-import Home from "./pages/index";
-import QuestionPage from "./pages/question";
-import Clear from "./pages/clear";
+import Home from "./app/page";
+import QuestionPage from "./app/question/[id]";
+import Clear from "./app/clear";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
@@ -11,7 +11,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/question/:id" element={<QuestionPage />} />
         <Route path="/clear" element={<Clear />} />
-        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
   );
