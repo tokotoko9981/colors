@@ -1,9 +1,9 @@
-// question.js (問題ページ)
+// src/app/question/page.js
 "use client";
 import React, { useState } from "react";
-import questions from "../data/questions.json";
-import Question from "../components/Question";
-import NumberPad from "../components/NumberPad";
+import questions from "../../data/questions.json";
+import Question from "../../components/Question";
+import NumberPad from "../../components/NumberPad";
 import { useRouter } from "next/navigation";
 
 const QuestionPage = () => {

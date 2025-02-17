@@ -1,7 +1,8 @@
 // App.js
 import Home from "./app/page";
 import QuestionPage from "./app/question/[id]";
-import Clear from "./app/clear";
+import Clear from "./app/clear/page";
+import './main.css';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 function App() {

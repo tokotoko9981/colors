@@ -1,4 +1,4 @@
-// clear.js (クリア画面)
+// src/app/clear/page.js
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";

@@ -1,5 +1,5 @@
 [
-    { "id": "1", "image": "/images/blue.jpg", "answer": "618" },
-    { "id": "2", "image": "/images/green.jpg", "answer": "834" }
+    { "id": "1", "image": "./images/blue.jpg", "answer": "618" },
+    { "id": "2", "image": "./images/green.jpg", "answer": "834" }
 ]
   
