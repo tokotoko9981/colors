@@ -9,14 +9,26 @@ const NumberPad = ({ onInput, onSubmit, onClear }) => {
       {numbers.map((num) => (
         <button
           key={num}
-          className="p-4 bg-blue-500 text-white rounded-lg text-xl"
+          button type="button"
+          className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800"
           onClick={() => onInput(num)}
         >
           {num}
         </button>
       ))}
-      <button className="p-4 bg-gray-500 text-white rounded-lg" onClick={onClear}>C</button>
-      <button className="p-4 bg-green-500 text-white rounded-lg" onClick={onSubmit}>✓</button>
+      <button 
+        button type="button"
+        className="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"
+        onClick={onClear}
+      >
+        ×
+      </button>
+      <button
+        className="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-800"
+        onClick={onSubmit}
+      >
+        ✓
+      </button>
     </div>
   );
 };

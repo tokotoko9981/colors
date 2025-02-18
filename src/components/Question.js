@@ -1,10 +1,15 @@
-// Question.js (問題表示コンポーネント)
-import React from "react";
+import Image from "next/image";
 
 const Question = ({ image }) => {
   return (
     <div className="flex flex-col items-center">
-      <img src={image} alt="問題" className="w-80 h-80 object-contain" />
+      <Image
+        src={image}
+        alt="問題の画像"
+        width={450}
+        height={300} 
+        className="rounded-lg"
+      />
     </div>
   );
 };
