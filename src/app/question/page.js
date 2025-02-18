@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 const QuestionPage = () => {
   const router = useRouter();
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [maxVisited, setMaxVisited] = useState(0); // ユーザーが到達した最大の問題番号（0-index）
+  const [maxVisited, setMaxVisited] = useState(0);
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
 
@@ -33,25 +33,27 @@ const QuestionPage = () => {
   const handleSubmit = () => {
     if (input === questions[currentQuestion].answer) {
       if (currentQuestion + 1 < questions.length) {
-        setCurrentQuestion((prev) => prev + 1);
-        if (currentQuestion + 1 > maxVisited) {
-          setMaxVisited(currentQuestion + 1);
+        const next = currentQuestion + 1;
+        setCurrentQuestion(next);
+        if (next > maxVisited) {
+          setMaxVisited(next);
         }
-        
         setInput("");
         setError(false);
       } else {
         router.push("/clear");
       }
     } else {
-      // エラーの場合、入力欄の表示を赤くする
       setError(true);
     }
   };
 
   return (
     <div
-      className={`flex flex-col items-center justify-center min-h-screen text-center p-4 ${questions[currentQuestion].bgColor}`}
+      className={twMerge(
+        "flex flex-col items-center justify-center min-h-screen text-center p-4",
+        questions[currentQuestion].bgColor
+      )}
     >
       <Question image={questions[currentQuestion].image} />
       {/* 入力欄 */}
@@ -59,8 +61,7 @@ const QuestionPage = () => {
         <label
           htmlFor="default-input"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        >
-        </label>
+        ></label>
         <input
           type="text"
           id="default-input"
@@ -68,22 +69,26 @@ const QuestionPage = () => {
           readOnly
           maxLength="10"
           className={twMerge(
-            "bg-gray-50 border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[300px] p-2.5 text-center",
+            "bg-gray-50 border text-sm rounded-lg focus:ring-white focus:border-white block w-[300px] p-2.5 text-center",
             error ? "border-red-500 text-red-500" : "border-gray-300 text-white",
-            "dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            "dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:ring-white dark:focus:border-white"
           )}
         />
       </div>
 
       <NumberPad onInput={handleInput} onSubmit={handleSubmit} onClear={handleClear} />
-      
+
       {/* 問題ナビゲーションボタン */}
       <div className="mt-8 flex flex-wrap justify-center">
         {questions.map((question, index) => {
-          // 到達済みかどうかの判定：index が maxVisited 以下なら到達済み
+          // 到達済みなら、そのボタンは常にその問題の buttonColor に依存する
           const isAccessible = index <= maxVisited;
           const buttonClass = isAccessible
-            ? `text-white ${question.buttonColor} hover:opacity-90 focus:outline-none focus:ring-4 ${question.highlightColor} font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2`
+            ? twMerge(
+                "text-white",
+                questions[index].buttonColor,
+                "hover:opacity-90 focus:outline-none focus:ring-4 focus:ring-white font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2"
+              )
             : "text-white bg-gray-400 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 cursor-not-allowed";
           return (
             <button
@@ -94,6 +99,7 @@ const QuestionPage = () => {
                 if (isAccessible) {
                   setCurrentQuestion(index);
                   setInput("");
+                  setError(false);
                 }
               }}
               disabled={!isAccessible}
