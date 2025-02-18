@@ -30,12 +30,12 @@ const QuestionPage = () => {
   };
 
   const handleSubmit = () => {
-    if (currentQuestion + 1 > maxVisited) {
-      setMaxVisited(currentQuestion + 1);
-    }    
     if (input === questions[currentQuestion].answer) {
       if (currentQuestion + 1 < questions.length) {
         setCurrentQuestion((prev) => prev + 1);
+        if (currentQuestion + 1 > maxVisited) {
+          setMaxVisited(currentQuestion + 1);
+        }        
         setInput("");
         setError(false);
       } else {
@@ -65,7 +65,7 @@ const QuestionPage = () => {
           value={input}
           readOnly
           maxLength="10"
-          className={`bg-gray-50 border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[300px] p-2.5 text-center dark:text-white${
+          className={`bg-gray-50 border text-white rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[300px] p-2.5 text-center ${
             error ? "border-red-500 text-red-500" : "border-gray-300 text-gray-900"
           } dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500`}
         />
@@ -79,7 +79,7 @@ const QuestionPage = () => {
           // 到達済みかどうかの判定：index が maxVisited 以下なら到達済み
           const isAccessible = index <= maxVisited;
           const buttonClass = isAccessible
-            ? `text-white ${question.buttonColor} hover:opacity-90 focus:outline-none focus:ring-4 ${question.highlightColor}-500 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2`
+            ? `text-white ${question.buttonColor} hover:opacity-90 focus:outline-none focus:ring-4 ${question.highlightColor} font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2`
             : "text-white bg-gray-400 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 cursor-not-allowed";
           return (
             <button
