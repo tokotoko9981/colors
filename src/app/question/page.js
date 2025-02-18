@@ -1,6 +1,7 @@
 // src/app/question/page.js
 "use client";
 import React, { useState } from "react";
+import { twMerge } from "tailwind-merge";
 import questions from "../../data/questions.json";
 import Question from "../../components/Question";
 import NumberPad from "../../components/NumberPad";
@@ -35,7 +36,8 @@ const QuestionPage = () => {
         setCurrentQuestion((prev) => prev + 1);
         if (currentQuestion + 1 > maxVisited) {
           setMaxVisited(currentQuestion + 1);
-        }        
+        }
+        
         setInput("");
         setError(false);
       } else {
@@ -65,9 +67,11 @@ const QuestionPage = () => {
           value={input}
           readOnly
           maxLength="10"
-          className={`bg-gray-50 border text-white rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[300px] p-2.5 text-center ${
-            error ? "border-red-500 text-red-500" : "border-gray-300 text-gray-900"
-          } dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500`}
+          className={twMerge(
+            "bg-gray-50 border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[300px] p-2.5 text-center",
+            error ? "border-red-500 text-red-500" : "border-gray-300 text-white",
+            "dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          )}
         />
       </div>
 
