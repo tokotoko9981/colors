@@ -29,7 +29,7 @@
     },
     {
       "id": 5,
-      "image": "/images/redTmp.svg",
+      "image": "/images/red.svg",
       "answer": "451",
       "bgColor": "bg-red-200",
       "buttonColor": "bg-red-500"

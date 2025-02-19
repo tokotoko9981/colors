@@ -57,7 +57,7 @@ const QuestionPage = () => {
         questions[currentQuestion].bgColor
       )}
     >
-      <div className="flex-1 flex items-center justify-center">
+      <div className="flex-1 flex items-center justify-center min-h-[300px]">
         <Question image={questions[currentQuestion].image} />
       </div>
 
@@ -77,12 +77,18 @@ const QuestionPage = () => {
         />
       </div>
 
-      {!correctAnswers[currentQuestion] && (
-        <NumberPad onInput={handleInput} onSubmit={handleSubmit} onClear={handleClear} />
-      )}
+      <div className="min-h-[200px] flex items-center justify-center">
+        {!correctAnswers[currentQuestion] && (
+          <NumberPad onInput={handleInput} onSubmit={handleSubmit} onClear={handleClear} />
+        )}
+      </div>
 
       <div className="w-full fixed bottom-0 left-0 right-0 flex justify-center bg-white bg-opacity-50 py-4">
         {questions.map((question, index) => {
+          if (index === questions.length - 1 && !correctAnswers[questions.length - 2]) {
+            return null; // 最終問題のボタンは5問目を解くまで表示しない
+          }
+          
           const isAccessible = index <= maxVisited;
           const buttonClass = isAccessible
             ? twMerge(
