@@ -13,6 +13,7 @@ const QuestionPage = () => {
   const [maxVisited, setMaxVisited] = useState(0);
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
+  const [correctAnswers, setCorrectAnswers] = useState({});
 
   const handleInput = (num) => {
     if (error) {
@@ -32,6 +33,7 @@ const QuestionPage = () => {
 
   const handleSubmit = () => {
     if (input === questions[currentQuestion].answer) {
+      setCorrectAnswers((prev) => ({ ...prev, [currentQuestion]: input }));
       if (currentQuestion + 1 < questions.length) {
         const next = currentQuestion + 1;
         setCurrentQuestion(next);
@@ -64,7 +66,7 @@ const QuestionPage = () => {
         <input
           type="text"
           id="default-input"
-          value={input}
+          value={correctAnswers[currentQuestion] || input}
           readOnly
           maxLength="10"
           className={twMerge(
@@ -75,7 +77,9 @@ const QuestionPage = () => {
         />
       </div>
 
-      <NumberPad onInput={handleInput} onSubmit={handleSubmit} onClear={handleClear} />
+      {!correctAnswers[currentQuestion] && (
+        <NumberPad onInput={handleInput} onSubmit={handleSubmit} onClear={handleClear} />
+      )}
 
       <div className="w-full fixed bottom-0 left-0 right-0 flex justify-center bg-white bg-opacity-50 py-4">
         {questions.map((question, index) => {
