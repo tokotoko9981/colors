@@ -1,24 +1,31 @@
 [
     {
       "id": 1,
-      "image": "/images/blue.jpg",
+      "image": "/images/blue.svg",
       "answer": "618",
       "bgColor": "bg-blue-200",
       "buttonColor": "bg-blue-500"
     },
     {
       "id": 2,
-      "image": "/images/green.jpg",
+      "image": "/images/green.svg",
       "answer": "834",
       "bgColor": "bg-green-200",
       "buttonColor": "bg-green-500"
     },
     {
       "id": 3,
-      "image": "/images/yellow.jpg",
+      "image": "/images/yellow.svg",
       "answer": "249",
       "bgColor": "bg-yellow-200",
       "buttonColor": "bg-yellow-500"
+    },
+    {
+      "id": 4,
+      "image": "/images/purple.svg",
+      "answer": "741",
+      "bgColor": "bg-purple-200",
+      "buttonColor": "bg-purple-500"
     }
   ]
   
