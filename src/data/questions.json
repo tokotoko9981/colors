@@ -26,6 +26,20 @@
       "answer": "741",
       "bgColor": "bg-purple-200",
       "buttonColor": "bg-purple-500"
+    },
+    {
+      "id": 5,
+      "image": "/images/redTmp.svg",
+      "answer": "451",
+      "bgColor": "bg-red-200",
+      "buttonColor": "bg-red-500"
+    },
+    {
+      "id": 6,
+      "image": "/images/black.svg",
+      "answer": "541",
+      "bgColor": "bg-black",
+      "buttonColor": "bg-black"
     }
   ]
   
