@@ -5,7 +5,7 @@ const nextConfig = {
         unoptimized: true,
     },
     basePath: "/colors",
-    assetPrefix: "/colors/",
+    assetPrefix: "/colors",
     trailingSlash: true,
   };
   
