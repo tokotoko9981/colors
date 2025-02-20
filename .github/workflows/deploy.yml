@@ -3,7 +3,7 @@ name: Deploy Next.js to GitHub Pages
 on:
   push:
     branches:
-      - main  # メインブランチが更新されたら実行
+      - main
 
 permissions:
   contents: write
@@ -26,12 +26,9 @@ jobs:
       - name: Build Next.js Project
         run: npm run build
 
-      - name: Export Static Files
-        run: npm run export
-
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages  # GitHub Pages 用のブランチ
-          folder: out  # `out/` をデプロイ
-          clean: true  # 古いファイルを削除
+          branch: gh-pages
+          folder: out
+          clean: true
