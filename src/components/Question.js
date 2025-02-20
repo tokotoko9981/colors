@@ -3,12 +3,12 @@ import Image from "next/image";
 
 const Question = ({ image }) => {
   const router = useRouter();
-  //const basePath = router.basePath || ""; 
+  const basePath = router.basePath || ""; // basePath を取得（設定されていない場合は空）
 
   return (
     <div className="flex justify-center items-center w-full h-full max-h-[60vh] min-h-[300px]">
       <Image
-        src={color/image} // basePath を考慮
+        src={`${basePath}${image}`} // basePath を考慮
         alt="Question Image"
         width={300}
         height={300}
