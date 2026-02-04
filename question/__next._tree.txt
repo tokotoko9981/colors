@@ -1,0 +1,2 @@
+:HL["/colors/_next/static/chunks/4a49e196ee6921ce.css","style"]
+0:{"buildId":"MWIa2tN3jQnGtmvKaldyK","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"question","paramType":null,"paramKey":"question","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
